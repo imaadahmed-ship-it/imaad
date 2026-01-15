@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AHMED .COM</title> <style>
+        /* Responsive helper rules */
+        html {
+            width: 100%;
+            margin: 0;
+        }
+        
+        *, *::before, *::after { box-sizing: border-box; }
+        img { max-width: 100% !important; height: auto; }
+        video, iframe { max-width: 100%; height: auto; display: block; }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+        .nav-links { display:flex; flex-wrap:wrap; gap:12px; }
+        .navbar { padding: 18px 5%; }
+        @media (max-width: 600px) { .navbar { padding: 12px 16px; } .nav-links { justify-content:center;} }
+        /* Basic Reset */
+        body { 
+            width: 100%;
+            margin: 0; 
+            font-family: sans-serif; 
+            background-color: #121212; 
+            color: white;
+            overflow-x: hidden !important;
+        }
+        a { text-decoration: none; color: white; }
+        ul { list-style: none; padding: 0; margin: 0; }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;             /* Cheezon ko aik line mein laane ke liye */
+            align-items: center;       /* Center align karne ke liye */
+            justify-content: space-between; /* Space barabar baatne ke liye */
+            padding: 10px 40px;
+            background-color: #000;    /* Dark background */
+            border-bottom: 2px solid #333;
+            flex-wrap: nowrap;
+        }
+
+        /* --- YEH HAI ASAL FIX --- */
+        /* Humne .logo ke andar wali 'img' ko target kiya hai */
+        .logo img {
+            height: 60px;       /* Ab image 60px ki hogi */
+            width: auto;        /* Width apne aap adjust hogi */
+            display: block;     /* Extra space khatam karne ke liye */
+            filter: drop-shadow(0 0 5px #00ff00); /* Neon effect */
+        }
+
+        /* Nav Links Styling */
+        .nav-links {
+            display: flex;
+            gap: 20px; /* Links ke beech mein gap */
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00ff00; /* Hover par neon green */
+        }
+
+        /* Icons Styling */
+        .nav-icons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="bg.img-removebg-preview.png" alt="1 Style Logo">
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Smart Watches</a></li>
+                <li><a href="#">One Earbuds</a></li>
+                <li><a href="#">Headphones</a></li>
+                <li><a href="#" style="color: #ff4d4d;">Year End Sale</a></li> 
+                <li><a href="#">Vision 2025</a></li>
+                <li><a href="#">Support</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <a href="#" class="icon-search">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </a>
+                <a href="#" class="icon-cart">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    </a>
+            </div>
+        </nav>
+    </header>
+
+    <div id="hero" style="height: 80vh; background: #1a1a1a; display: flex; align-items: center; justify-content: center;">
+        <h1>Hero Section Here</h1>
+    </div>
+
+
+</body>
+</html>

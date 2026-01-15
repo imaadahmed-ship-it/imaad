@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+function checkoutToWhatsApp() {
+    let phoneNumber = "923001234567"; // Apna WhatsApp Number yahan likhein
+    
+    // फर्ज karein aapka cart data is tarah hai (Yeh aapke cart logic se aayega)
+    let cartItems = [
+        { name: "Product 1", price: 1000, qty: 1 },
+        { name: "Product 2", price: 1500, qty: 2 }
+    ];
+
+    let message = "🛍️ *Naya Order Aaya Hai!*%0a--------------------------%0a";
+    let total = 0;
+
+    // Har product ko message mein add karein
+    cartItems.forEach((item, index) => {
+        let subtotal = item.price * item.qty;
+        total += subtotal;
+        message += `${index + 1}. *${item.name}* (Qty: ${item.qty}) - Rs. ${subtotal}%0a`;
+    });
+
+    message += "--------------------------%0a";
+    message += `*Total Bill: Rs. ${total}*%0a%0a`;
+    message += "Kindly mera order confirm kar dein!";
+
+    // Link generate karein aur redirect karein
+    let whatsappURL = "https://wa.me/" + phoneNumber + "?text=" + message;
+    
+    // User ko WhatsApp par bhej dein
+    window.location.href = whatsappURL;
+}</script>
+    
+    
+</body>
+</html>

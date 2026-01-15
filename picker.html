@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- COLOR PICKER SECTION -->
+<section id="color-picker" class="py-5">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-4">Pick a Color</h2>
+
+    <div class="row justify-content-center">
+      <div class="col-md-6 text-center">
+
+        <input type="color" id="colorInput" class="form-control form-control-color mb-3" value="#ff0000" title="Choose your color">
+
+        <button class="btn btn-primary" onclick="applyColor()">Apply Color</button>
+
+        <p class="mt-3">Selected Color: <span id="selectedColor">#ff0000</span></p>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+    <script>
+  function applyColor() {
+    const color = document.getElementById('colorInput').value;
+    document.getElementById('selectedColor').textContent = color;
+
+    document.body.style.backgroundColor = color;
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🍕 FoodStore - Demo</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+:root {
+  --primary: #ffc107;
+  --bg-light: #f4f6f8;
+  --bg-dark: #212529;
+}
+
+body {
+  padding-top: 70px;
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg-light);
+  transition: background 0.3s, color 0.3s;
+}
+
+.dark-mode {
+  background: #121212 !important;
+  color: #e0e0e0;
+}
+
+.navbar {
+  backdrop-filter: blur(10px);
+}
+
+.nav-link {
+  cursor: pointer;
+}
+
+.hero {
+  background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), 
+    url("https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg");
+  background-size: cover;
+  color:white;
+  text-align:center;
+  padding:130px 20px;
+}
+
+.hero h1 {
+  font-size:3rem;
+  font-weight:800;
+}
+
+.card {
+  border-radius:20px;
+  border:none;
+  overflow:hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(6px);
+}
+
+.dark-mode .card {
+  background: rgba(40,40,40,0.7);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow:0 15px 30px rgba(0,0,0,.2);
+}
+
+.card img {
+  height:220px;
+  object-fit:cover;
+}
+
+section h2 {
+  position: relative;
+}
+
+section h2::after {
+  content:"";
+  width:80px;
+  height:4px;
+  background: var(--primary);
+  display:block;
+  margin:10px auto 0;
+  border-radius:10px;
+}
+
+footer {
+  background: linear-gradient(135deg,#212529,#343a40);
+  color:white;
+  text-align:center;
+  padding:25px;
+  margin-top:50px;
+}
+
+/* Buttons */
+.btn {
+  border-radius:30px;
+  transition: transform 0.2s;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+/* Shake animation */
+.shake {
+  animation: shake 0.4s;
+}
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
+
+.list-group-item {
+  border-radius:12px;
+  margin-bottom:8px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<div class="container">
+<a class="navbar-brand fw-bold">🍕 FoodStore</a>
+<button class="btn btn-outline-light me-2" id="darkToggle">🌙 Dark Mode</button>
+<ul class="navbar-nav ms-auto gap-3">
+<li><span class="nav-link" onclick="scrollToSection('home')">Home</span></li>
+<li><span class="nav-link" onclick="scrollToSection('shop')">Shop</span></li>
+<li><span class="nav-link" onclick="scrollToSection('about')">About</span></li>
+<li>
+<button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#cartModal">
+🛒 Cart (<span id="cartCount">0</span>)
+</button>
+</li>
+</ul>
+</div>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="hero">
+<h1>Delicious Food Delivered Fast</h1>
+<p class="lead mt-3">Fresh • Tasty • Affordable</p>
+<button class="btn btn-warning btn-lg mt-4" onclick="scrollToSection('shop')">Shop Now</button>
+</section>
+
+<!-- SHOP -->
+<section id="shop" class="container my-5">
+<h2 class="text-center fw-bold mb-4">Our Menu</h2>
+<div class="row g-4" id="productGrid"></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="container my-5">
+<h2 class="fw-bold text-center mb-4">About Us</h2>
+<div class="row justify-content-center">
+<div class="col-md-8 text-center fs-5">
+<p>FoodStore is a demo online food shop for learning HTML, CSS, JS, and Bootstrap.</p>
+<p>We focus on smooth UX, modern design, and a functional shopping cart with persistent data.</p>
+</div>
+</div>
+</section>
+
+<!-- ORDER HISTORY -->
+<section class="container my-5">
+<h2 class="fw-bold text-center mb-4">Order History</h2>
+<ul class="list-group" id="orderHistory">
+<li class="list-group-item text-muted text-center">No orders yet</li>
+</ul>
+</section>
+
+<!-- CART MODAL -->
+<div class="modal fade" id="cartModal">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title">🛒 Shopping Cart</h5>
+<button class="btn-close" data-bs-dismiss="modal"></button>
+</div>
+<div class="modal-body">
+<ul class="list-group mb-3" id="cartItems"></ul>
+<h5>Total: $<span id="cartTotal">0.00</span></h5>
+<input class="form-control mt-3 mb-2" id="custName" placeholder="Your Name">
+<input class="form-control mb-2" id="custAddress" placeholder="Your Address">
+<div id="checkoutAlert" class="alert alert-success d-none mt-3">✅ Order placed successfully!</div>
+</div>
+<div class="modal-footer">
+<button class="btn btn-danger" onclick="clearCart()">Clear</button>
+<button class="btn btn-primary" onclick="checkout()">Checkout</button>
+</div>
+</div>
+</div>
+</div>
+
+<footer>© 2026 FoodStore</footer>
+
+<script>
+// Products
+const products = [
+  {name:"Cheese Pizza", price:8.99, img:"https://cdn.pixabay.com/photo/2017/08/06/06/43/pizza-2589577_960_720.jpg"},
+  {name:"Pancakes", price:5.49, img:"https://cdn.pixabay.com/photo/2017/05/07/08/56/pancakes-2291908_960_720.jpg"},
+  {name:"Macarons", price:6.99, img:"https://cdn.pixabay.com/photo/2017/03/27/14/53/macarons-2179198_960_720.jpg"},
+  {name:"Burger", price:7.49, img:"https://cdn.pixabay.com/photo/2014/10/23/18/05/burger-500054_960_720.jpg"},
+  {name:"Salad", price:4.99, img:"https://cdn.pixabay.com/photo/2016/03/05/19/02/salad-1238248_960_720.jpg"}
+];
+
+// Cart
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+let orders = JSON.parse(localStorage.getItem('orders')) || [];
+
+const productGrid = document.getElementById('productGrid');
+const cartItems = document.getElementById('cartItems');
+const cartTotal = document.getElementById('cartTotal');
+const cartCount = document.getElementById('cartCount');
+const checkoutAlert = document.getElementById('checkoutAlert');
+
+function renderProducts() {
+  productGrid.innerHTML = '';
+  products.forEach((p,i)=>{
+    const card = document.createElement('div');
+    card.className = "col-md-4";
+    card.innerHTML = `
+      <div class="card h-100 shadow">
+        <img src="${p.img}">
+        <div class="card-body text-center">
+          <h5>${p.name}</h5>
+          <p>$${p.price}</p>
+          <button class="btn btn-success w-100" onclick="addToCart(${i})">Add to Cart</button>
+        </div>
+      </div>`;
+    productGrid.appendChild(card);
+  });
+}
+
+function addToCart(index) {
+  const product = products[index];
+  const exist = cart.find(item => item.name === product.name);
+  if(exist){
+    exist.qty +=1;
+  }else{
+    cart.push({...product, qty:1});
+  }
+  saveCart();
+  updateCart();
+}
+
+function updateCart() {
+  cartItems.innerHTML = '';
+  let total = 0;
+  cart.forEach((item,i)=>{
+    total += item.price * item.qty;
+    cartItems.innerHTML += `
+      <li class="list-group-item">
+        ${item.name} x ${item.qty} - $${(item.price*item.qty).toFixed(2)}
+        <div>
+          <button class="btn btn-sm btn-secondary" onclick="changeQty(${i},-1)">-</button>
+          <button class="btn btn-sm btn-secondary" onclick="changeQty(${i},1)">+</button>
+          <button class="btn btn-sm btn-danger" onclick="removeItem(${i})">X</button>
+        </div>
+      </li>`;
+  });
+  cartTotal.innerText = total.toFixed(2);
+  cartCount.innerText = cart.reduce((a,b)=>a+b.qty,0);
+  saveCart();
+}
+
+function changeQty(i, delta){
+  cart[i].qty += delta;
+  if(cart[i].qty<=0) cart.splice(i,1);
+  updateCart();
+}
+
+function removeItem(i){
+  cart.splice(i,1);
+  updateCart();
+}
+
+function clearCart(){ cart=[]; updateCart(); }
+
+function checkout(){
+  const name = document.getElementById('custName').value.trim();
+  if(!cart.length){ alert("Cart is empty"); return;}
+  if(!name){ alert("Enter your name"); return;}
+  const total = cart.reduce((a,b)=>a+b.price*b.qty,0);
+  orders.push({date:new Date().toLocaleString(), total, items: [...cart]});
+  localStorage.setItem('orders', JSON.stringify(orders));
+  renderOrders();
+  clearCart();
+  checkoutAlert.classList.remove('d-none');
+  setTimeout(()=>checkoutAlert.classList.add('d-none'),2500);
+}
+
+function renderOrders(){
+  const orderHistory = document.getElementById('orderHistory');
+  if(orders.length===0){
+    orderHistory.innerHTML = '<li class="list-group-item text-center text-muted">No orders yet</li>';
+    return;
+  }
+  orderHistory.innerHTML = '';
+  orders.forEach((o,i)=>{
+    orderHistory.innerHTML += `
+      <li class="list-group-item">
+        Order #${i+1} (${o.date}) - $${o.total.toFixed(2)}
+      </li>`;
+  });
+}
+
+function saveCart(){ localStorage.setItem('cart', JSON.stringify(cart)); }
+
+function scrollToSection(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+
+// Dark mode toggle
+const darkBtn = document.getElementById('darkToggle');
+darkBtn.addEventListener('click', ()=>{
+  document.body.classList.toggle('dark-mode');
+  darkBtn.textContent = document.body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode';
+});
+
+// Init
+renderProducts();
+updateCart();
+renderOrders();
+</script>
+
+</body>
+</html>

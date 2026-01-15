@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Boostify Digital | Agency</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        :root {
+            --main: #4f46e5;
+            --secondary: #06b6d4; /* Changed to a brighter teal for contrast */
+        }
+
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(90deg, var(--main), var(--secondary));
+        }
+
+        /* Animated Logo */
+        .logo-img {
+            background: #fff;
+            padding: 4px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+            transition: 0.5s;
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+        .logo-img:hover { transform: rotate(360deg); }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.6); }
+            70% { box-shadow: 0 0 0 15px rgba(255,255,255,0); }
+            100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+        }
+
+        /* Hero Image - Updated with Real Background */
+        .hero-video {
+            position: relative;
+            height: 600px;
+            background: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1600&q=80') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(79, 70, 229, 0.7), rgba(0, 0, 0, 0.8));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: #fff;
+            text-align: center;
+        }
+        .hero-overlay h1 { font-size: 3.5rem; animation: fadeSlide 1.5s ease-out forwards; opacity: 0; }
+        .hero-overlay p { font-size: 1.4rem; animation: fadeSlide 1.5s ease-out 0.5s forwards; opacity: 0; }
+
+        @keyframes fadeSlide {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Glassmorphism Cards */
+        .card-glass {
+            background: #fff;
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        .card-glass:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(79, 70, 229, 0.2);
+        }
+        .card-img-top { height: 220px; object-fit: cover; }
+
+        .btn-theme { background: var(--main); color: #fff; border: none; padding: 10px 25px; border-radius: 8px; transition: 0.3s; }
+        .btn-theme:hover { background: var(--secondary); color: white; transform: scale(1.05); }
+
+        footer { background: #111827; padding: 50px 0; }
+        .contact-map { filter: grayscale(100%) invert(90%); transition: 0.5s; border-radius: 15px; }
+        .contact-map:hover { filter: none; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center fw-bold fs-4" href="#home">
+            <img src="https://img.icons8.com/fluency/48/rocket.png" class="me-2 logo-img" alt="Logo">
+            Boostify <span class="fw-light">Digital</span>
+        </a>
+        <button class="navbar-toggler border-0" data-bs-toggle="collapse" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="hero-video" id="home">
+    <div class="hero-overlay px-3">
+        <h1 class="fw-bold">Boostify Digital Agency</h1>
+        <p class="lead">We Grow Your Business with Creative Digital Solutions</p>
+        <div class="d-flex gap-2">
+            <button class="btn btn-theme shadow-lg" data-bs-toggle="modal" data-bs-target="#infoModal">Our Strategy</button>
+            <a href="#contact" class="btn btn-outline-light px-4">Get Started</a>
+        </div>
+    </div>
+</section>
+
+<section class="container my-5 py-5">
+    <div class="text-center mb-5">
+        <h6 class="text-uppercase text-primary fw-bold">Our Expertise</h6>
+        <h2 class="display-5 fw-bold">What We Offer</h2>
+    </div>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card-glass h-100">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="SEO">
+                <div class="card-body text-center p-4">
+                    <h5 class="fw-bold">SEO Optimization</h5>
+                    <p class="text-muted small">Dominate search results and drive organic traffic to your website.</p>
+                    <button class="btn btn-theme btn-sm" data-bs-toggle="modal" data-bs-target="#infoModal">Read More</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card-glass h-100">
+                <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Social Media">
+                <div class="card-body text-center p-4">
+                    <h5 class="fw-bold">Social Media</h5>
+                    <p class="text-muted small">Engage your community on Instagram, LinkedIn, and Facebook.</p>
+                    <button class="btn btn-theme btn-sm">View Details</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card-glass h-100">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsModULVYuWLNUAp_Dg2Xw9Iu_qa-38XET1A&s" class="card-img-top" alt="PPC">
+                <div class="card-body text-center p-4">
+                    <h5 class="fw-bold">Paid Advertising</h5>
+                    <p class="text-muted small">Scale fast with high-ROI Google and Meta ad campaigns.</p>
+                    <button class="btn btn-theme btn-sm">View Details</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="infoModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Our Growth Strategy</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4">
+                <p>At <strong>Boostify Digital</strong>, we use a 3-step process:</p>
+                <ul>
+                    <li>Deep Market Analysis</li>
+                    <li>Creative Campaign Design</li>
+                    <li>Data-Driven Execution</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section id="about" class="bg-light py-5">
+    <div class="container my-5">
+        <div class="row align-items-center g-5">
+            <div class="col-md-6">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80" class="img-fluid rounded-4 shadow-lg" alt="About Boostify">
+            </div>
+            <div class="col-md-6">
+                <h2 class="display-6 fw-bold mb-4">Why Choose Us?</h2>
+                <p class="lead">Boostify Digital helps brands grow using modern digital strategies.</p>
+                <p class="text-muted">Since 2020, we have helped 300+ companies navigate the digital landscape. Our mission is to deliver measurable growth for all our clients through SEO, Social Media, and specialized Paid Advertising.</p>
+                <div class="row mt-4">
+                    <div class="col-6">
+                        <h4 class="fw-bold text-primary">98%</h4>
+                        <p class="small">Client Satisfaction</p>
+                    </div>
+                    <div class="col-6">
+                        <h4 class="fw-bold text-primary">150%</h4>
+                        <p class="small">Avg. ROI Boost</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="container my-5 py-5">
+    <h2 class="text-center fw-bold mb-5">Start Your Journey</h2>
+    <div class="row g-5">
+        <div class="col-md-6">
+            <form id="contactForm" class="p-4 bg-white shadow rounded-4">
+                <div class="mb-3">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" id="name" class="form-control bg-light" placeholder="John Doe">
+                    <div class="text-danger small mt-1" id="nameErr"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" id="email" class="form-control bg-light" placeholder="john@example.com">
+                    <div class="text-danger small mt-1" id="emailErr"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Phone Number</label>
+                    <input type="text" id="phone" class="form-control bg-light" placeholder="Numbers only">
+                    <div class="text-danger small mt-1" id="phoneErr"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Message</label>
+                    <textarea id="message" class="form-control bg-light" rows="4" placeholder="How can we help?"></textarea>
+                    <div class="text-danger small mt-1" id="msgErr"></div>
+                </div>
+
+                <button class="btn btn-theme w-100 py-3 mt-2 fw-bold" type="submit">Send Message</button>
+            </form>
+        </div>
+        <div class="col-md-6 text-center">
+            <div class="rounded-4 overflow-hidden shadow mb-3">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80" class="img-fluid contact-map w-100" alt="Office">
+            </div>
+            <div class="text-start ps-3">
+                <p><i class="bi bi-geo-alt-fill text-primary me-2"></i> <strong>Main Office:</strong> Tech Hub, Karachi, Pakistan</p>
+                <p><i class="bi bi-envelope-fill text-primary me-2"></i> hello@boostify.com</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="text-white text-center">
+    <div class="container">
+        <h4 class="fw-bold mb-3">Boostify Digital</h4>
+        <div class="fs-4 mb-4">
+            <i class="bi bi-facebook mx-2 cursor-pointer"></i>
+            <i class="bi bi-instagram mx-2 cursor-pointer"></i>
+            <i class="bi bi-linkedin mx-2 cursor-pointer"></i>
+            <i class="bi bi-twitter mx-2 cursor-pointer"></i>
+        </div>
+        <p class="text-secondary small mb-0">© 2026 Boostify Digital Agency. Built for Growth.</p>
+    </div>
+</footer>
+
+<script>
+$(document).ready(function(){
+    // jQuery Animation for Hero
+    $(".hero-overlay h1").hide().fadeIn(2000);
+
+    // Form Submission
+    $("#contactForm").submit(function(e){
+        e.preventDefault();
+        $(".text-danger").text("");
+        let valid = true;
+        let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+        
+        if($("#name").val()==""){ $("#nameErr").text("Please enter your name"); valid=false; }
+        if(!$("#email").val().match(emailPattern)){ $("#emailErr").text("Please enter a valid email address"); valid=false; }
+        if(!$.isNumeric($("#phone").val())){ $("#phoneErr").text("Numeric characters only"); valid=false; }
+        if($("#message").val()==""){ $("#msgErr").text("Message is required"); valid=false; }
+        
+        if(valid){
+            alert("Form submitted successfully! We will contact you soon.");
+            $("#contactForm").slideUp().delay(500).fadeIn();
+            this.reset();
+        }
+    });
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+Hide quoted text
+
+---------- Forwarded message ---------
+From: Mail Delivery Subsystem <mailer-daemon@googlemail.com>
+Date: Thu, 8 Jan 2026, 12:58 pm
+Subject: Delivery Status Notification (Failure)
+To: <imaadahmed10103@gmail.com>
+
+
+
+

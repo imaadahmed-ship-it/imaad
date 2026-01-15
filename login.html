@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+   
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="profileForm">
+            <div class="input-group">
+                <label for="email">EMAIL</label>
+                <input type="text" id="email" name="email" required>
+            </div>
+
+            <div class="input-group">
+                <label for="name">Password</label>
+                <input type="password" id="name" name="password" required>
+            </div>
+
+            <button type="submit" class="btn">Login</button>
+        </form>
+
+        <div id="msg"></div>
+
+        <div class="forgot-password">
+            <a href="#">Forgot your password?</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $("#profileForm").submit(function(e){
+            e.preventDefault();
+
+            var userName = $("#name").val();
+            var userEmail = $("#email").val();
+
+            if(userName !== "" && userEmail !== ""){
+                $("#msg").text("Form submitted successfully!");
+            } else {
+                $("#msg").text("Please fill all fields").css("color", "red");
+            }
+        });
+    </script>
+
+</body>
+</html>
